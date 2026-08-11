@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iPhone & Samsung Repair Booking | YG INNOVE Mauritius</title>
+    <meta name="description" content="Book professional iPhone and Samsung repairs in Mauritius with YG INNOVE. Battery replacement, display repair, back glass, and camera repairs.">
+
+    <!-- External Assets -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-gray-950 text-gray-100 font-sans min-h-screen flex flex-col justify-between">
+
+    <!-- Navigation Header -->
+    <nav class="border-b border-gray-800 bg-gray-900/90 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <a href="index.html" class="text-2xl font-black tracking-wider text-indigo-500">YG<span class="text-white">INNOVE</span></a>
+            </div>
+
+            <div class="hidden md:flex space-x-8 text-sm font-medium">
+                <a href="index.html" class="nav-link hover:text-indigo-400 transition">← Back to Main Site</a>
+                <a href="#iphone" class="nav-link hover:text-indigo-400 transition">iPhone Repairs</a>
+                <a href="#samsung" class="nav-link hover:text-indigo-400 transition">Samsung Repairs</a>
+            </div>
+
+            <div class="flex items-center space-x-3">
+                <a href="https://wa.me/23058216065?text=Hi%20YG%20INNOVE,%20I%20have%20a%20repair%20inquiry" target="_blank" class="whatsapp-btn bg-green-600 hover:bg-green-500 text-white text-xs md:text-sm font-semibold px-4 py-2 rounded-lg flex items-center space-x-2 transition shadow-lg shadow-green-900/30">
+                    <i class="fab fa-whatsapp text-base"></i>
+                    <span>Quick Chat</span>
+                </a>
+                <a href="index.html" class="md:hidden text-gray-400 hover:text-white text-sm">
+                    <i class="fas fa-arrow-left mr-1"></i> Back
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Title & Header -->
+    <section class="bg-gradient-to-b from-indigo-950/40 to-gray-950 py-12 border-b border-gray-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <span class="bg-indigo-950 text-indigo-400 border border-indigo-800 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">Fast Turnaround Service</span>
+            <h1 class="text-3xl sm:text-5xl font-black mt-4">Mobile Device <span class="gradient-text text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500">Repair Store</span></h1>
+            <p class="text-gray-400 text-sm sm:text-base mt-2 max-w-2xl mx-auto">Select your device brand and model below to book display replacements, original battery swaps, back glass fixes, or diagnostics.</p>
+        </div>
+    </section>
+
+    <!-- SECTION: APPLE iPHONE REPAIRS -->
+    <section id="iphone" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center space-x-3 mb-8 border-b border-gray-800 pb-4">
+            <div class="p-3 bg-gray-800 rounded-xl text-white text-2xl">
+                <i class="fab fa-apple"></i>
+            </div>
+            <div>
+                <h2 class="text-2xl font-bold">iPhone Repairs & Screen Replacements</h2>
+                <p class="text-xs text-gray-400">Genuine & Premium OEM OLED displays, high-capacity batteries, and chip repairs.</p>
+            </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <!-- iPhone 15 Pro / Pro Max -->
+            <div class="service-card apple-card bg-gray-900 border border-gray-800 rounded-2xl p-6 relative flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-xs bg-indigo-950 text-indigo-300 border border-indigo-800/60 px-2.5 py-1 rounded-full font-semibold">Flagship Series</span>
+                        <i class="fab fa-apple text-gray-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">iPhone 15 Series</h3>
+                    <p class="text-xs text-gray-400 mt-1">15 / 15 Plus / 15 Pro / 15 Pro Max</p>
+                    
+                    <div class="mt-6 space-y-2 text-xs border-t border-gray-800/80 pt-4">
+                        <div class="flex justify-between text-gray-300"><span><i class="fas fa-mobile-screen text-indigo-400 mr-2"></i>OLED Display Replacement</span><span class="font-bold">from Rs 6,500</span></div>
+                        <div class="flex justify-between text-gray-300"><span><i class="fas fa-battery-full text-indigo-400 mr-2"></i>Original Battery Swap</span><span class="font-bold">from Rs 3,200</span></div>
+                        <div class="flex justify-between text-gray-300"><span><i class="fas fa-plug text-indigo-400 mr-2"></i>USB-C Port Replacement</span><span class="font-bold">from Rs 2,500</span></div>
+                        <div class="flex justify-between text-gray-300"><span><i class="fas fa-camera text-indigo-400 mr-2"></i>Rear Glass / Camera Glass</span><span class="font-bold">from Rs 2,800</span></div>
+                    </div>
+                </div>
+
+                <button onclick="openBookingModal('Apple', 'iPhone 15 Series')" class="btn-primary mt-6 w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2.5 rounded-xl text-xs flex items-center justify-center space-x-2 transition">
+                    <i class="fas fa-calendar-check"></i>
+                    <span>Book iPhone 15 Repair</span>
+                </button>
+            </div>
+
+            <!-- iPhone 14 Series -->
+            <div class="service-card apple-card bg-gray-900 border border-gray-800 rounded-2xl p-6 relative flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-xs bg-indigo-950 text-indigo-300 border border-indigo-800/60 px-2.5 py-1 rounded-full font-semibold">Popular</span>
+                        <i class="fab fa-apple text-gray-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">iPhone 14 Series</h3>
+                    <p class="text-xs text-gray-400 mt-1">14 / 14 Plus / 14 Pro / 14 Pro Max</p>
+
+                    <div class="mt-6 space-y-2 text-xs border-t border-gray-800/80 pt-4">
+                        <div class="flex justify-between text-gray-300"><span><i class="fas fa-mobile-screen text-indigo-400 mr-2"></i>OLED Display Replacement</span><span class="font-bold">from Rs 5,500</span></div>
+                        <div class="flex justify-between text-gray-300"><span><i class="fas fa-battery-full text-indigo-400 mr-2"></i>Battery Replacement</span><span class="font-bold">from Rs 2,800</span></div>
+                        <div class="flex justify-between text-gray-300"><span><i class="fas fa-plug text-indigo-400 mr-2"></i>Lightning Port Fix</span><span class="font-bold">from Rs 2,200</span></div>
+                        <div class="flex justify-between text-gray-300"><span><i class="fas fa-camera text-indigo-400 mr-2"></i>Rear Glass Laser Repair</span><span class="font-bold">from Rs 2,500</span></div>
+                    </div>
+                </div>
+
+                <button onclick="openBookingModal('Apple', 'iPhone 14 Series')" class="btn-primary mt-6 w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2.5 rounded-xl text-xs flex items-center justify-center space-x-2 transition">
+                    <i class="fas fa-calendar-check"></i>
+                    <span>Book iPhone 14 Repair</span>
+                </button>
+            </div>
+
+            <!-- iPhone 13 & 12 Series -->
+            <div class="service-card apple-card bg-gray-900 border border-gray-800 rounded-2xl p-6 relative flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-xs bg-indigo-950 text-indigo-300 border border-indigo-800/60 px-2.5 py-1 rounded-full font-semibold">High Demand</span>
+                        <i class="fab fa-apple text-gray-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">iPhone 13 & 12 Series</h3>
+                    <p class="text-xs text-gray-400 mt-1">13 Mini / 13 / Pro / 12 / 12 Pro</p>
+
+                    <div class="mt-6 space-y-2 text-xs border-t border-gray-800/80 pt-4">
+                        <div class="flex justify-between text-gray-300"><span><i class="fas fa-mobile-screen text-indigo-400 mr-2"></i>Screen Replacement</span><span class="font-bold">from Rs 4,200</span></div>
+                        <div class="flex justify-between text-gray-300"><span><i class="fas fa-battery-full text-indigo-400 mr-2"></i>Battery Health Boost</span><span class="font-bold">from Rs 2,400</span></div>
+                        <div class="flex justify-between text-gray-300"><span><i class="fas fa-plug text-indigo-400 mr-2"></i>Charging Port Cleaning/Repair</span><span class="font-bold">from Rs 1,800</span></div>
+                        <div class="flex justify-between text-gray-300"><span><i class="fas fa-water text-indigo-400 mr-2"></i>Water Damage Restoration</span><span class="font-bold">from Rs 2,000</span></div>
+                    </div>
+                </div>
+
+                <button onclick="openBookingModal('Apple', 'iPhone 13/12 Series')" class="btn-primary mt-6 w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2.5 rounded-xl text-xs flex items-center justify-center space-x-2 transition">
+                    <i class="fas fa-calendar-check"></i>
+                    <span>Book iPhone 12/13 Repair</span>
+                </button>
+            </div>
+
+            <!-- Older iPhones (11, X, SE, 8) -->
+            <div class="service-card apple-card bg-gray-900 border border-gray-800 rounded-2xl p-6 relative flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-xs bg-gray-800 text-gray-300 px-2.5 py-1 rounded-full font-semibold">Legacy Models</span>
+                        <i class="fab fa-apple text-gray-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">iPhone 11, XR, X & SE</h3>
+                    <p class="text-xs text-gray-400 mt-1">iPhone 11 / Pro / XS / XR / X / SE2020</p>
+
+                    <div class="mt-6 space-y-2 text-xs border-t border-gray-800/80 pt-4">
+                        <div class="flex justify-between text-gray-300"><span><i class="fas fa-mobile-screen text-indigo-400 mr-2"></i>Screen Replacement</span><span class="font-bold">from Rs 3,200</span></div>
+                        <div class="flex justify-between text-gray-300"><span><i class="fas fa-battery-full text-indigo-400 mr-2"></i>Battery Replacement</span><span class="font-bold">from Rs 1,900</span></div>
+                        <div class="flex justify-between text-gray-300"><span><i class="fas fa-volume-high text-indigo-400 mr-2"></i>Earpiece / Mic Fix</span><span class="font-bold">from Rs 1,500</span></div>
+                    </div>
+                </div>
+
+                <button onclick="openBookingModal('Apple', 'iPhone 11/XR/X Series')" class="btn-primary mt-6 w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2.5 rounded-xl text-xs flex items-center justify-center space-x-2 transition">
+                    <i class="fas fa-calendar-check"></i>
+                    <span>Book Repair</span>
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION: SAMSUNG GALAXY REPAIRS -->
+    <section id="samsung" class="py-16 bg-gray-900/40 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center space-x-3 mb-8 border-b border-gray-800 pb-4">
+                <div class="p-3 bg-blue-950 text-blue-400 border border-blue-800 rounded-xl text-xl font-black">
+                    S
+                </div>
+                <div>
+                    <h2 class="text-2xl font-bold">Samsung Galaxy Smartphone Repairs</h2>
+                    <p class="text-xs text-gray-400">Official AMOLED screen panels, battery renewals, and curved glass repairs.</p>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- Galaxy S Series -->
+                <div class="service-card bg-gray-900 border border-gray-800 rounded-2xl p-6 relative flex flex-col justify-between hover:border-blue-500/50">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="text-xs bg-blue-950 text-blue-300 border border-blue-800/60 px-2.5 py-1 rounded-full font-semibold">S Series Flagships</span>
+                            <i class="fas fa-mobile-button text-gray-600 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Galaxy S24 / S23 / S22</h3>
+                        <p class="text-xs text-gray-400 mt-1">Ultra, Plus & Standard models</p>
+
+                        <div class="mt-6 space-y-2 text-xs border-t border-gray-800/80 pt-4">
+                            <div class="flex justify-between text-gray-300"><span><i class="fas fa-mobile-screen text-blue-400 mr-2"></i>Curved Dynamic AMOLED Screen</span><span class="font-bold">from Rs 6,800</span></div>
+                            <div class="flex justify-between text-gray-300"><span><i class="fas fa-battery-full text-blue-400 mr-2"></i>High Capacity Battery Swap</span><span class="font-bold">from Rs 2,600</span></div>
+                            <div class="flex justify-between text-gray-300"><span><i class="fas fa-plug text-blue-400 mr-2"></i>Fast Charge USB-C Port</span><span class="font-bold">from Rs 2,200</span></div>
+                            <div class="flex justify-between text-gray-300"><span><i class="fas fa-camera text-blue-400 mr-2"></i>Camera Lens Cover Glass</span><span class="font-bold">from Rs 1,800</span></div>
+                        </div>
+                    </div>
+
+                    <button onclick="openBookingModal('Samsung', 'Galaxy S24/S23/S22 Series')" class="btn-primary mt-6 w-full bg-blue-600 hover:bg-blue-500 text-white font-semibold py-2.5 rounded-xl text-xs flex items-center justify-center space-x-2 transition">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Book Galaxy S Repair</span>
+                    </button>
+                </div>
+
+                <!-- Galaxy Z Fold & Flip -->
+                <div class="service-card bg-gray-900 border border-gray-800 rounded-2xl p-6 relative flex flex-col justify-between hover:border-blue-500/50">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="text-xs bg-purple-950 text-purple-300 border border-purple-800/60 px-2.5 py-1 rounded-full font-semibold">Foldables</span>
+                            <i class="fas fa-box text-gray-600 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Galaxy Z Fold & Z Flip</h3>
+                        <p class="text-xs text-gray-400 mt-1">Fold 5/4/3 & Flip 5/4/3 Series</p>
+
+                        <div class="mt-6 space-y-2 text-xs border-t border-gray-800/80 pt-4">
+                            <div class="flex justify-between text-gray-300"><span><i class="fas fa-mobile-screen text-blue-400 mr-2"></i>Inner Folding Screen Repair</span><span class="font-bold">Quote Required</span></div>
+                            <div class="flex justify-between text-gray-300"><span><i class="fas fa-mobile text-blue-400 mr-2"></i>Outer Cover Glass Replacement</span><span class="font-bold">from Rs 4,500</span></div>
+                            <div class="flex justify-between text-gray-300"><span><i class="fas fa-arrows-spin text-blue-400 mr-2"></i>Hinge Realignment / Dust Clean</span><span class="font-bold">from Rs 2,500</span></div>
+                        </div>
+                    </div>
+
+                    <button onclick="openBookingModal('Samsung', 'Galaxy Z Fold/Flip Series')" class="btn-primary mt-6 w-full bg-blue-600 hover:bg-blue-500 text-white font-semibold py-2.5 rounded-xl text-xs flex items-center justify-center space-x-2 transition">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Request Foldable Quote</span>
+                    </button>
+                </div>
+
+                <!-- Galaxy A Series -->
+                <div class="service-card bg-gray-900 border border-gray-800 rounded-2xl p-6 relative flex flex-col justify-between hover:border-blue-500/50">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="text-xs bg-gray-800 text-gray-300 px-2.5 py-1 rounded-full font-semibold">A Series</span>
+                            <i class="fas fa-mobile text-gray-600 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Galaxy A Series</h3>
+                        <p class="text-xs text-gray-400 mt-1">A54, A53, A73, A34, A14, A12 & more</p>
+
+                        <div class="mt-6 space-y-2 text-xs border-t border-gray-800/80 pt-4">
+                            <div class="flex justify-between text-gray-300"><span><i class="fas fa-mobile-screen text-blue-400 mr-2"></i>Display Replacement</span><span class="font-bold">from Rs 2,800</span></div>
+                            <div class="flex justify-between text-gray-300"><span><i class="fas fa-battery-full text-blue-400 mr-2"></i>Original Battery Swap</span><span class="font-bold">from Rs 1,800</span></div>
+                            <div class="flex justify-between text-gray-300"><span><i class="fas fa-plug text-blue-400 mr-2"></i>Charging Board Fix</span><span class="font-bold">from Rs 1,500</span></div>
+                        </div>
+                    </div>
+
+                    <button onclick="openBookingModal('Samsung', 'Galaxy A Series')" class="btn-primary mt-6 w-full bg-blue-600 hover:bg-blue-500 text-white font-semibold py-2.5 rounded-xl text-xs flex items-center justify-center space-x-2 transition">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Book Galaxy A Repair</span>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- BOOKING MODAL -->
+    <div id="booking-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+        <div class="bg-gray-900 border border-gray-800 rounded-2xl max-w-md w-full p-6 relative shadow-2xl">
+            <button onclick="closeBookingModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-lg">
+                <i class="fas fa-xmark"></i>
+            </button>
+
+            <h3 class="text-xl font-bold text-white mb-1" id="modal-title">Book Repair Service</h3>
+            <p class="text-xs text-gray-400 mb-6">Confirm your model and required repair type to start booking directly on WhatsApp.</p>
+
+            <form id="booking-form" onsubmit="submitBooking(event)" class="space-y-4 text-xs">
+                <div>
+                    <label class="block text-gray-300 font-semibold mb-1">Brand & Model</label>
+                    <input type="text" id="modal-device" class="w-full bg-gray-950 border border-gray-800 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-indigo-500" readonly>
+                </div>
+
+                <div>
+                    <label class="block text-gray-300 font-semibold mb-1">Exact Model / Storage (Optional)</label>
+                    <input type="text" id="modal-exact-model" placeholder="e.g. iPhone 14 Pro Max 256GB" class="w-full bg-gray-950 border border-gray-800 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-indigo-500">
+                </div>
+
+                <div>
+                    <label class="block text-gray-300 font-semibold mb-1">Select Service Required</label>
+                    <select id="modal-service" class="w-full bg-gray-950 border border-gray-800 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-indigo-500" required>
+                        <option value="Display / Screen Replacement">Display / Screen Replacement</option>
+                        <option value="Battery Replacement">Battery Replacement</option>
+                        <option value="Charging Port Repair">Charging Port Repair</option>
+                        <option value="Back Glass Repair">Back Glass Repair</option>
+                        <option value="Camera Lens / Sensor Repair">Camera Lens / Sensor Repair</option>
+                        <option value="Water Damage Diagnostics">Water Damage Diagnostics</option>
+                        <option value="Other / Diagnostic Inspection">Other / Diagnostic Inspection</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-gray-300 font-semibold mb-1">Your Name</label>
+                    <input type="text" id="modal-name" placeholder="Your Full Name" required class="w-full bg-gray-950 border border-gray-800 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-indigo-500">
+                </div>
+
+                <div>
+                    <label class="block text-gray-300 font-semibold mb-1">Issue Details / Notes</label>
+                    <textarea id="modal-notes" rows="3" placeholder="Describe what happened (e.g., dropped screen, battery draining fast...)" class="w-full bg-gray-950 border border-gray-800 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-indigo-500"></textarea>
+                </div>
+
+                <button type="submit" class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3 rounded-xl transition flex items-center justify-center space-x-2 text-sm mt-4">
+                    <i class="fab fa-whatsapp text-lg"></i>
+                    <span>Confirm & Chat on WhatsApp</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 border-t border-gray-800 py-8 text-xs text-gray-400">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
+            <p>© 2026 YG INNOVE. Professional iPhone & Samsung Service Mauritius.</p>
+            <div class="space-x-4">
+                <a href="index.html" class="hover:text-white transition">Home</a>
+                <a href="index.html#contact" class="hover:text-white transition">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Script for Booking Modal -->
+    <script>
+        let currentBrand = '';
+        let currentDevice = '';
+
+        function openBookingModal(brand, device) {
+            currentBrand = brand;
+            currentDevice = device;
+            
+            document.getElementById('modal-title').textContent = `Book ${brand} Repair`;
+            document.getElementById('modal-device').value = `${brand} - ${device}`;
+            document.getElementById('booking-modal').classList.remove('hidden');
+        }
+
+        function closeBookingModal() {
+            document.getElementById('booking-modal').classList.add('hidden');
+        }
+
+        function submitBooking(event) {
+            event.preventDefault();
+
+            const device = document.getElementById('modal-device').value;
+            const exactModel = document.getElementById('modal-exact-model').value || 'Not specified';
+            const service = document.getElementById('modal-service').value;
+            const name = document.getElementById('modal-name').value;
+            const notes = document.getElementById('modal-notes').value || 'None';
+
+            const message = `Hello YG INNOVE! I would like to book a repair.\n\n` +
+                `*Name:* ${name}\n` +
+                `*Category:* ${device}\n` +
+                `*Exact Model:* ${exactModel}\n` +
+                `*Service Needed:* ${service}\n` +
+                `*Notes:* ${notes}`;
+
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/23058216065?text=${encodedMessage}`;
+
+            window.open(whatsappUrl, '_blank');
+            closeBookingModal();
+        }
+    </script>
+</body>
+</html>
