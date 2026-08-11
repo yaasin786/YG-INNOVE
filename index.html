@@ -117,7 +117,7 @@
 
             <!-- Desktop Links -->
             <div class="hidden md:flex space-x-8 text-sm font-medium">
-                <a href="store.html" class="nav-link hover:text-indigo-400 transition">Store & Mobile Repairs</a>
+                <a href="store-repairs.html" class="nav-link hover:text-indigo-400 transition">Store & Mobile Repairs</a>
                 <a href="#repairs" class="nav-link hover:text-indigo-400 transition">Laptop & Apple Repair</a>
                 <a href="#software" class="nav-link hover:text-indigo-400 transition">Software Installation</a>
                 <a href="#enterprise" class="nav-link hover:text-indigo-400 transition">Prepaid IT Support</a>
@@ -139,7 +139,7 @@
 
         <!-- Mobile Navigation Drawer -->
         <div id="mobile-menu" class="hidden fixed inset-x-0 top-16 bg-gray-900/95 border-b border-gray-800 p-6 flex flex-col space-y-4 text-sm font-medium backdrop-blur-xl z-50 md:hidden">
-            <a href="store.html" onclick="toggleMobileMenu()" class="text-gray-300 hover:text-indigo-400 py-1 flex items-center justify-between">
+            <a href="store-repairs.html" onclick="toggleMobileMenu()" class="text-gray-300 hover:text-indigo-400 py-1 flex items-center justify-between">
                 <span>Store & Mobile Repairs</span>
                 <i class="fas fa-chevron-right text-xs text-indigo-400"></i>
             </a>
@@ -164,7 +164,7 @@
                 From high-performance laptops and specialized Apple repairs to professional software setups and prepaid remote/on-site IT support for Mauritian businesses — YG INNOVE keeps your technology running seamlessly.
             </p>
             <div class="mt-8 flex flex-wrap gap-4">
-                <a href="store.html" class="btn-primary bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-6 py-3 rounded-xl transition shadow-lg shadow-indigo-600/30 flex items-center space-x-2">
+                <a href="store-repairs.html" class="btn-primary bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-6 py-3 rounded-xl transition shadow-lg shadow-indigo-600/30 flex items-center space-x-2">
                     <i class="fas fa-mobile-screen"></i>
                     <span>Mobile & iPhone Store</span>
                 </a>
@@ -311,10 +311,10 @@
 
             <!-- Filter Tabs -->
             <div class="flex flex-wrap justify-center gap-2 mb-10 text-xs">
-                <button onclick="filterSoftware('all')" class="soft-filter-btn active bg-indigo-600 text-white px-4 py-2 rounded-xl transition font-semibold">All Software</button>
-                <button onclick="filterSoftware('design')" class="soft-filter-btn bg-gray-900 border border-gray-800 text-gray-300 hover:text-white px-4 py-2 rounded-xl transition font-semibold">Design & Architecture</button>
-                <button onclick="filterSoftware('productivity')" class="soft-filter-btn bg-gray-900 border border-gray-800 text-gray-300 hover:text-white px-4 py-2 rounded-xl transition font-semibold">Productivity & OS</button>
-                <button onclick="filterSoftware('utility')" class="soft-filter-btn bg-gray-900 border border-gray-800 text-gray-300 hover:text-white px-4 py-2 rounded-xl transition font-semibold">Utility & Security</button>
+                <button onclick="filterSoftware(event, 'all')" class="soft-filter-btn active bg-indigo-600 text-white px-4 py-2 rounded-xl transition font-semibold">All Software</button>
+                <button onclick="filterSoftware(event, 'design')" class="soft-filter-btn bg-gray-900 border border-gray-800 text-gray-300 hover:text-white px-4 py-2 rounded-xl transition font-semibold">Design & Architecture</button>
+                <button onclick="filterSoftware(event, 'productivity')" class="soft-filter-btn bg-gray-900 border border-gray-800 text-gray-300 hover:text-white px-4 py-2 rounded-xl transition font-semibold">Productivity & OS</button>
+                <button onclick="filterSoftware(event, 'utility')" class="soft-filter-btn bg-gray-900 border border-gray-800 text-gray-300 hover:text-white px-4 py-2 rounded-xl transition font-semibold">Utility & Security</button>
             </div>
 
             <!-- Software Grid -->
@@ -636,7 +636,7 @@
             <div>
                 <h4 class="font-bold text-white mb-3 text-xs uppercase tracking-wider">Services</h4>
                 <ul class="text-xs space-y-2">
-                    <li><a href="store.html" class="hover:text-indigo-400 transition">Mobile Repair Store</a></li>
+                    <li><a href="store-repairs.html" class="hover:text-indigo-400 transition">Mobile Repair Store</a></li>
                     <li><a href="#repairs" class="hover:text-indigo-400 transition">Windows Laptop Repair</a></li>
                     <li><a href="#repairs" class="hover:text-indigo-400 transition">MacBook & Apple Service</a></li>
                     <li><a href="#software" class="hover:text-indigo-400 transition">Software Installation</a></li>
@@ -709,12 +709,14 @@
             }
         }
 
-        function filterSoftware(category) {
+        function filterSoftware(evt, category) {
             const cards = document.querySelectorAll('.soft-card');
             const buttons = document.querySelectorAll('.soft-filter-btn');
 
             buttons.forEach(btn => btn.classList.remove('bg-indigo-600', 'text-white'));
-            event.target.classList.add('bg-indigo-600', 'text-white');
+            if (evt && evt.currentTarget) {
+                evt.currentTarget.classList.add('bg-indigo-600', 'text-white');
+            }
 
             cards.forEach(card => {
                 if (category === 'all' || card.classList.contains(category)) {
