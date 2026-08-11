@@ -1,30 +1,34 @@
-/* Custom Stylesheet for YG INNOVE */
-
-/* Smooth Scrolling */
 html {
     scroll-behavior: smooth;
 }
 
+
 /* Custom Scrollbar */
+
 ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #030712; /* Tailwind gray-950 */
+    background: #030712;
+    /* Tailwind gray-950 */
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #1f2937; /* Tailwind gray-800 */
+    background: #1f2937;
+    /* Tailwind gray-800 */
     border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #4f46e5; /* Tailwind indigo-600 */
+    background: #4f46e5;
+    /* Tailwind indigo-600 */
 }
 
+
 /* Navigation & Button Micro-interactions */
+
 .nav-link {
     position: relative;
 }
@@ -36,7 +40,8 @@ html {
     height: 2px;
     bottom: -4px;
     left: 0;
-    background-color: #6366f1; /* Tailwind indigo-500 */
+    background-color: #6366f1;
+    /* Tailwind indigo-500 */
     transition: width 0.3s ease-in-out;
 }
 
@@ -44,7 +49,9 @@ html {
     width: 100%;
 }
 
+
 /* Service Card Hover Animations */
+
 .service-card {
     transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
@@ -59,27 +66,50 @@ html {
     transition: transform 0.3s ease;
 }
 
+
 /* Apple Card Special Glow Effect */
+
 .apple-card:hover {
     box-shadow: 0 20px 30px -5px rgba(99, 102, 241, 0.25);
 }
 
+
 /* Corporate Benefit Card Hover */
+
 .benefit-card {
     transition: border-color 0.3s ease, background-color 0.3s ease;
 }
 
 .benefit-card:hover {
     border-color: rgba(99, 102, 241, 0.5);
-    background-color: #111827; /* Tailwind gray-900 */
+    background-color: #111827;
+    /* Tailwind gray-900 */
 }
 
+
 /* Button Animations */
-.btn-primary, .whatsapp-btn {
+
+.contact-action {
+    padding: 0.6rem 0.8rem;
+    border: 1px solid rgba(55, 65, 81, 0.9);
+    border-radius: 0.75rem;
+    background: rgba(17, 24, 39, 0.7);
     transition: all 0.25s ease-in-out;
 }
 
-.btn-primary:hover, .whatsapp-btn:hover {
+.contact-action:hover {
+    border-color: rgba(99, 102, 241, 0.6);
+    background: rgba(31, 41, 55, 0.95);
+    transform: translateY(-2px);
+}
+
+.btn-primary,
+.whatsapp-btn {
+    transition: all 0.25s ease-in-out;
+}
+
+.btn-primary:hover,
+.whatsapp-btn:hover {
     transform: translateY(-2px);
 }
 
@@ -92,9 +122,12 @@ html {
     background-color: rgba(17, 24, 39, 0.8);
 }
 
+
 /* Pulsing background elements */
+
 @keyframes softPulse {
-    0%, 100% {
+    0%,
+    100% {
         opacity: 0.25;
     }
     50% {
