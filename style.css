@@ -1,0 +1,107 @@
+/* Custom Stylesheet for YG INNOVE */
+
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #030712; /* Tailwind gray-950 */
+}
+
+::-webkit-scrollbar-thumb {
+    background: #1f2937; /* Tailwind gray-800 */
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #4f46e5; /* Tailwind indigo-600 */
+}
+
+/* Navigation & Button Micro-interactions */
+.nav-link {
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: #6366f1; /* Tailwind indigo-500 */
+    transition: width 0.3s ease-in-out;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Service Card Hover Animations */
+.service-card {
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 25px -5px rgba(79, 70, 229, 0.15), 0 8px 10px -6px rgba(79, 70, 229, 0.1);
+}
+
+.service-card:hover .icon-box {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+
+/* Apple Card Special Glow Effect */
+.apple-card:hover {
+    box-shadow: 0 20px 30px -5px rgba(99, 102, 241, 0.25);
+}
+
+/* Corporate Benefit Card Hover */
+.benefit-card {
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.benefit-card:hover {
+    border-color: rgba(99, 102, 241, 0.5);
+    background-color: #111827; /* Tailwind gray-900 */
+}
+
+/* Button Animations */
+.btn-primary, .whatsapp-btn {
+    transition: all 0.25s ease-in-out;
+}
+
+.btn-primary:hover, .whatsapp-btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    transition: all 0.25s ease-in-out;
+}
+
+.btn-secondary:hover {
+    transform: translateY(-2px);
+    background-color: rgba(17, 24, 39, 0.8);
+}
+
+/* Pulsing background elements */
+@keyframes softPulse {
+    0%, 100% {
+        opacity: 0.25;
+    }
+    50% {
+        opacity: 0.4;
+    }
+}
+
+.hero-glow {
+    animation: softPulse 4s infinite ease-in-out;
+}
