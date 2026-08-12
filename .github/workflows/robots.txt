@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Link to your XML Sitemap for search engines
+Sitemap: https://yginnove.com/sitemap.xml
