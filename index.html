@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <title>YG INNOVE | Laptops, Apple Repairs, Software & Business IT Solutions Mauritius</title>
 
     <!-- Primary Meta Tags -->
@@ -29,14 +30,13 @@
     <meta property="twitter:description" content="Expert laptop & Apple MacBook repairs, software setup, quality tech sales, and prepaid corporate IT support across Mauritius.">
     <meta property="twitter:image" content="https://yginnove.com/og-image.jpg">
 
-    <!-- External Assets -->
+    <!-- External Assets via HTTPS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 
     <!-- Custom Tech Animations CSS -->
     <style>
-        /* Ambient Cyber Background Grid */
         .tech-bg {
             background-color: #030712;
             background-image: 
@@ -48,7 +48,6 @@
             background-position: 0 0, 0 0, -1px -1px, -1px -1px;
         }
 
-        /* Animated Tech Glow Effect */
         @keyframes cyberGlow {
             0%, 100% { box-shadow: 0 0 15px rgba(99, 102, 241, 0.2), inset 0 0 15px rgba(99, 102, 241, 0.1); }
             50% { box-shadow: 0 0 30px rgba(99, 102, 241, 0.5), inset 0 0 20px rgba(99, 102, 241, 0.3); }
@@ -58,7 +57,6 @@
             animation: cyberGlow 4s infinite ease-in-out;
         }
 
-        /* Gradient Text Animation */
         @keyframes gradientFlow {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
@@ -73,7 +71,6 @@
             animation: gradientFlow 6s ease infinite;
         }
 
-        /* Hover Tech Card Elevation */
         .tech-card {
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
@@ -84,7 +81,6 @@
             box-shadow: 0 20px 30px -10px rgba(99, 102, 241, 0.25);
         }
 
-        /* Button Shimmer Effect */
         .shimmer-btn {
             position: relative;
             overflow: hidden;
@@ -112,7 +108,6 @@
             100% { transform: translate(100%, 100%) rotate(30deg); }
         }
 
-        /* QR Scanner Laser Animation */
         @keyframes scanLine {
             0% { top: 0%; opacity: 0; }
             15% { opacity: 1; }
@@ -220,7 +215,6 @@
                 <a href="index.html" class="text-2xl font-black tracking-wider text-indigo-500 hover:opacity-90 transition">YG<span class="text-white">INNOVE</span></a>
             </div>
 
-            <!-- Desktop Links -->
             <div class="hidden md:flex space-x-8 text-sm font-medium">
                 <a href="store-repairs.html" class="nav-link hover:text-indigo-400 transition">Store & Mobile Repairs</a>
                 <a href="#repairs" class="nav-link hover:text-indigo-400 transition">Laptop & Apple Repair</a>
@@ -230,26 +224,22 @@
             </div>
 
             <div class="flex items-center space-x-3">
-                <!-- Checkout / Pay Now Button -->
                 <button onclick="openCheckoutModal()" class="shimmer-btn bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white text-xs md:text-sm font-bold px-4 py-2 rounded-xl flex items-center space-x-2 transition shadow-lg shadow-indigo-900/40 border border-indigo-400/40">
                     <i class="fas fa-shopping-cart text-sm"></i>
                     <span>Checkout / Pay</span>
                 </button>
 
-                <!-- WhatsApp Quick Chat -->
                 <a href="https://wa.me/+23058216065?text=Hi%20YG%20INNOVE,%20I%20need%20assistance" target="_blank" rel="noopener noreferrer" class="whatsapp-btn bg-green-600 hover:bg-green-500 text-white text-xs md:text-sm font-semibold px-4 py-2 rounded-xl flex items-center space-x-2 transition shadow-lg shadow-green-900/30">
                     <i class="fab fa-whatsapp text-base"></i>
                     <span class="hidden sm:inline">Quick Chat</span>
                 </a>
 
-                <!-- Mobile Menu Button -->
                 <button id="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Toggle navigation menu" class="md:hidden text-gray-300 hover:text-white p-2 focus:outline-none">
                     <i class="fas fa-bars text-xl"></i>
                 </button>
             </div>
         </div>
 
-        <!-- Mobile Navigation Drawer -->
         <div id="mobile-menu" class="hidden fixed inset-x-0 top-16 bg-gray-950/95 border-b border-gray-800 p-6 flex flex-col space-y-4 text-sm font-medium backdrop-blur-2xl z-50 md:hidden">
             <a href="store-repairs.html" onclick="toggleMobileMenu()" class="text-gray-300 hover:text-indigo-400 py-1 flex items-center justify-between">
                 <span>Store & Mobile Repairs</span>
@@ -291,7 +281,6 @@
             </div>
         </div>
 
-        <!-- Hero Feature Card -->
         <div class="relative">
             <div class="absolute -inset-1 bg-gradient-to-r from-indigo-500 via-purple-600 to-indigo-500 rounded-3xl blur-xl opacity-30 animate-pulse"></div>
             <div class="relative bg-gray-900/90 border border-gray-800 rounded-3xl p-8 space-y-6 backdrop-blur-xl cyber-glow">
@@ -329,7 +318,7 @@
         </div>
     </section>
 
-    <!-- SECTION: LAPTOP & APPLE REPAIR SERVICES -->
+    <!-- Repair Services -->
     <section id="repairs" class="bg-gray-900/40 border-y border-gray-800/80 py-20 backdrop-blur-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-16">
@@ -341,7 +330,6 @@
             </div>
 
             <div class="grid md:grid-cols-3 gap-8">
-                <!-- Windows Laptops -->
                 <div class="tech-card bg-gray-900/90 border border-gray-800 p-8 rounded-3xl backdrop-blur-md">
                     <div class="icon-box w-12 h-12 bg-indigo-600/20 text-indigo-400 rounded-2xl border border-indigo-500/30 flex items-center justify-center text-xl mb-6">
                         <i class="fas fa-laptop"></i>
@@ -356,7 +344,6 @@
                     </ul>
                 </div>
 
-                <!-- Apple Repair Highlight -->
                 <div class="tech-card bg-gradient-to-b from-gray-900 to-indigo-950/50 border border-indigo-500/40 p-8 rounded-3xl relative overflow-hidden shadow-xl">
                     <span class="absolute top-4 right-4 bg-indigo-600 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-md">Specialized</span>
                     <div class="icon-box w-12 h-12 bg-gray-800 border border-gray-700 text-white rounded-2xl flex items-center justify-center text-xl mb-6">
@@ -372,7 +359,6 @@
                     </ul>
                 </div>
 
-                <!-- Maintenance & Tune-up -->
                 <div class="tech-card bg-gray-900/90 border border-gray-800 p-8 rounded-3xl backdrop-blur-md">
                     <div class="icon-box w-12 h-12 bg-indigo-600/20 text-indigo-400 rounded-2xl border border-indigo-500/30 flex items-center justify-center text-xl mb-6">
                         <i class="fas fa-microchip"></i>
@@ -388,7 +374,6 @@
                 </div>
             </div>
 
-            <!-- CTA Banner -->
             <div class="mt-12 bg-gray-950/80 border border-gray-800 p-6 rounded-3xl flex flex-col md:flex-row items-center justify-between gap-4 backdrop-blur-xl">
                 <div class="flex items-center space-x-4">
                     <div class="p-3 bg-green-600/20 text-green-400 rounded-2xl border border-green-500/30">
@@ -414,11 +399,9 @@
         </div>
     </section>
 
-    <!-- SECTION: SOFTWARE INSTALLATION HUB -->
+    <!-- Software Hub -->
     <section id="software" class="py-20 border-t border-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            
-            <!-- Header -->
             <div class="text-center max-w-3xl mx-auto mb-12">
                 <span class="text-indigo-400 font-semibold text-xs tracking-widest uppercase bg-indigo-950/80 px-3 py-1 rounded-full border border-indigo-800/50">Digital Services</span>
                 <h2 class="text-3xl sm:text-4xl font-extrabold mt-3 text-white">Professional Software Installation & Licensing</h2>
@@ -427,7 +410,6 @@
                 </p>
             </div>
 
-            <!-- Filter Tabs -->
             <div class="flex flex-wrap justify-center gap-2 mb-10 text-xs">
                 <button onclick="filterSoftware(event, 'all')" class="soft-filter-btn active bg-indigo-600 text-white px-4 py-2 rounded-xl transition font-semibold shadow-md">All Software</button>
                 <button onclick="filterSoftware(event, 'design')" class="soft-filter-btn bg-gray-900 border border-gray-800 text-gray-300 hover:text-white px-4 py-2 rounded-xl transition font-semibold">Design & Architecture</button>
@@ -435,10 +417,7 @@
                 <button onclick="filterSoftware(event, 'utility')" class="soft-filter-btn bg-gray-900 border border-gray-800 text-gray-300 hover:text-white px-4 py-2 rounded-xl transition font-semibold">Utility & Security</button>
             </div>
 
-            <!-- Software Grid -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-
-                <!-- Adobe CC -->
                 <div class="tech-card soft-card design bg-gray-900/90 border border-gray-800 hover:border-indigo-500/50 p-6 rounded-2xl transition relative group cursor-pointer backdrop-blur-md" onclick="toggleSoftwareSelect(this, 'Adobe Creative Cloud Suite')">
                     <div class="flex justify-between items-start mb-4">
                         <div class="p-3 bg-red-500/10 text-red-400 rounded-xl text-2xl border border-red-500/20">
@@ -454,7 +433,6 @@
                     </div>
                 </div>
 
-                <!-- AutoCAD -->
                 <div class="tech-card soft-card design bg-gray-900/90 border border-gray-800 hover:border-indigo-500/50 p-6 rounded-2xl transition relative group cursor-pointer backdrop-blur-md" onclick="toggleSoftwareSelect(this, 'Autodesk AutoCAD / Revit')">
                     <div class="flex justify-between items-start mb-4">
                         <div class="p-3 bg-red-600/10 text-red-500 rounded-xl text-2xl border border-red-500/20">
@@ -470,7 +448,6 @@
                     </div>
                 </div>
 
-                <!-- SolidWorks -->
                 <div class="tech-card soft-card design bg-gray-900/90 border border-gray-800 hover:border-indigo-500/50 p-6 rounded-2xl transition relative group cursor-pointer backdrop-blur-md" onclick="toggleSoftwareSelect(this, 'SolidWorks 3D CAD')">
                     <div class="flex justify-between items-start mb-4">
                         <div class="p-3 bg-blue-500/10 text-blue-400 rounded-xl text-2xl border border-blue-500/20">
@@ -486,7 +463,6 @@
                     </div>
                 </div>
 
-                <!-- Microsoft Office 365 -->
                 <div class="tech-card soft-card productivity bg-gray-900/90 border border-gray-800 hover:border-indigo-500/50 p-6 rounded-2xl transition relative group cursor-pointer backdrop-blur-md" onclick="toggleSoftwareSelect(this, 'Microsoft Office 365 / Pro')">
                     <div class="flex justify-between items-start mb-4">
                         <div class="p-3 bg-orange-500/10 text-orange-400 rounded-xl text-2xl border border-orange-500/20">
@@ -502,7 +478,6 @@
                     </div>
                 </div>
 
-                <!-- Windows OS Upgrade -->
                 <div class="tech-card soft-card productivity bg-gray-900/90 border border-gray-800 hover:border-indigo-500/50 p-6 rounded-2xl transition relative group cursor-pointer backdrop-blur-md" onclick="toggleSoftwareSelect(this, 'Windows 10 / 11 Pro Installation')">
                     <div class="flex justify-between items-start mb-4">
                         <div class="p-3 bg-blue-600/10 text-blue-400 rounded-xl text-2xl border border-blue-500/20">
@@ -518,7 +493,6 @@
                     </div>
                 </div>
 
-                <!-- SketchUp Pro -->
                 <div class="tech-card soft-card design bg-gray-900/90 border border-gray-800 hover:border-indigo-500/50 p-6 rounded-2xl transition relative group cursor-pointer backdrop-blur-md" onclick="toggleSoftwareSelect(this, 'SketchUp Pro + V-Ray')">
                     <div class="flex justify-between items-start mb-4">
                         <div class="p-3 bg-amber-500/10 text-amber-400 rounded-xl text-2xl border border-amber-500/20">
@@ -534,7 +508,6 @@
                     </div>
                 </div>
 
-                <!-- Antivirus & Security -->
                 <div class="tech-card soft-card utility bg-gray-900/90 border border-gray-800 hover:border-indigo-500/50 p-6 rounded-2xl transition relative group cursor-pointer backdrop-blur-md" onclick="toggleSoftwareSelect(this, 'Antivirus & Cybersecurity Suite')">
                     <div class="flex justify-between items-start mb-4">
                         <div class="p-3 bg-emerald-500/10 text-emerald-400 rounded-xl text-2xl border border-emerald-500/20">
@@ -550,7 +523,6 @@
                     </div>
                 </div>
 
-                <!-- CorelDRAW Graphics -->
                 <div class="tech-card soft-card design bg-gray-900/90 border border-gray-800 hover:border-indigo-500/50 p-6 rounded-2xl transition relative group cursor-pointer backdrop-blur-md" onclick="toggleSoftwareSelect(this, 'CorelDRAW Graphics Suite')">
                     <div class="flex justify-between items-start mb-4">
                         <div class="p-3 bg-green-500/10 text-green-400 rounded-xl text-2xl border border-green-500/20">
@@ -565,10 +537,8 @@
                         <span class="text-gray-500 select-badge">Click to Select</span>
                     </div>
                 </div>
-
             </div>
 
-            <!-- Software Selection Action Bar -->
             <div id="software-bar" class="mt-10 bg-indigo-950/80 border border-indigo-800/80 rounded-3xl p-6 flex flex-col md:flex-row items-center justify-between gap-4 backdrop-blur-xl">
                 <div>
                     <div class="flex items-center space-x-2">
@@ -584,11 +554,10 @@
                     </button>
                 </div>
             </div>
-
         </div>
     </section>
 
-    <!-- SECTION: CORPORATE IT & PREPAID SUPPORT PACKAGES -->
+    <!-- Corporate IT -->
     <section id="enterprise" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-gray-800">
         <div class="text-center max-w-3xl mx-auto mb-16">
             <span class="text-indigo-400 font-semibold text-xs tracking-widest uppercase bg-indigo-950/80 px-3 py-1 rounded-full border border-indigo-800/50">For Businesses & SMEs</span>
@@ -600,10 +569,7 @@
             </p>
         </div>
 
-        <!-- Prepaid Support Packages Cards -->
         <div class="grid lg:grid-cols-2 gap-8 mb-16">
-
-            <!-- Card 1: Remote IT Helpdesk -->
             <div class="tech-card bg-gray-900/90 border border-gray-800 hover:border-indigo-500/50 p-8 rounded-3xl transition relative flex flex-col justify-between backdrop-blur-xl">
                 <div>
                     <div class="flex justify-between items-start mb-6">
@@ -640,7 +606,6 @@
                 </div>
             </div>
 
-            <!-- Card 2: On-Site IT Engineer Support -->
             <div class="tech-card bg-gradient-to-b from-gray-900 to-indigo-950/40 border border-indigo-500/40 p-8 rounded-3xl transition relative flex flex-col justify-between backdrop-blur-xl shadow-xl">
                 <div>
                     <div class="flex justify-between items-start mb-6">
@@ -676,10 +641,8 @@
                     </button>
                 </div>
             </div>
-
         </div>
 
-        <!-- Additional Corporate Services Overview -->
         <div class="bg-gray-900/80 border border-gray-800 rounded-3xl p-8 lg:p-10 backdrop-blur-xl">
             <div class="grid lg:grid-cols-3 gap-8">
                 <div class="flex items-start space-x-4">
@@ -715,7 +678,7 @@
         </div>
     </section>
 
-    <!-- CONTACT SECTION -->
+    <!-- Contact Section -->
     <section id="contact" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="bg-gradient-to-br from-indigo-950/80 via-gray-900 to-gray-950 border border-gray-800 rounded-3xl p-8 md:p-10 shadow-2xl backdrop-blur-xl">
             <div class="grid lg:grid-cols-[1.2fr_0.8fr] gap-10 items-center">
@@ -780,16 +743,13 @@
         </div>
     </footer>
 
-    <!-- CHECKOUT & MCB PAYMENT MODAL (WITH LASER SCANNER ANIMATION) -->
+    <!-- Checkout Modal -->
     <div id="checkout-modal" class="fixed inset-0 bg-gray-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
         <div class="bg-gray-900 border border-gray-800 rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto">
-            
-            <!-- Close Button -->
             <button onclick="closeCheckoutModal()" class="absolute top-5 right-5 text-gray-400 hover:text-white bg-gray-800 p-2 rounded-full w-8 h-8 flex items-center justify-center transition">
                 <i class="fas fa-times"></i>
             </button>
 
-            <!-- Header -->
             <div class="text-center mb-6">
                 <div class="inline-flex items-center space-x-2 bg-indigo-950/80 border border-indigo-800 px-3 py-1 rounded-full text-indigo-400 text-xs font-semibold mb-2">
                     <i class="fas fa-receipt"></i>
@@ -799,7 +759,6 @@
                 <p class="text-xs text-gray-400 mt-1">Pay via MCB Juice QR or Direct Bank Transfer</p>
             </div>
 
-            <!-- FORM STEP 1: Select Item & Input Amount -->
             <div class="space-y-4 mb-6">
                 <div>
                     <label class="block text-xs font-semibold text-gray-300 mb-1.5">1. Select Product or Service taken:</label>
@@ -822,10 +781,7 @@
                 </div>
             </div>
 
-            <!-- PAYMENT METHOD DISPLAY -->
             <div class="bg-gray-950 border border-gray-800 rounded-2xl p-5 space-y-5">
-                
-                <!-- MCB Juice QR Display with Laser Scanner Effect -->
                 <div class="text-center">
                     <span class="text-[11px] font-bold text-red-500 uppercase tracking-wider block mb-2"><i class="fas fa-qrcode mr-1"></i> Scan using MCB Juice / MauCAS</span>
                     <div class="bg-white p-3 rounded-2xl inline-block border-2 border-red-600/30 shadow-md qr-scanner-overlay relative">
@@ -833,7 +789,6 @@
                     </div>
                 </div>
 
-                <!-- Bank Transfer Details -->
                 <div class="space-y-3 pt-3 border-t border-gray-800 text-xs">
                     <div class="flex justify-between items-center">
                         <span class="text-gray-400">Bank Name:</span>
@@ -847,7 +802,6 @@
                         <span class="font-bold text-white">YG INNOVE</span>
                     </div>
                     
-                    <!-- Account Number with Copy Button -->
                     <div>
                         <label class="text-[10px] text-gray-400 block mb-1">MCB Account Number:</label>
                         <div class="flex items-center justify-between bg-gray-900 border border-gray-700 rounded-xl p-2.5">
@@ -859,29 +813,24 @@
                         </div>
                     </div>
                 </div>
-
             </div>
 
-            <!-- Action Button -->
             <div class="mt-6">
                 <button onclick="submitCheckoutWhatsApp()" class="shimmer-btn w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3.5 px-4 rounded-xl text-xs flex items-center justify-center space-x-2 transition shadow-lg shadow-green-950/50">
                     <i class="fab fa-whatsapp text-lg"></i>
                     <span>Confirm & Send Proof on WhatsApp</span>
                 </button>
             </div>
-
         </div>
     </div>
 
-    <!-- Interactive Scripts -->
+    <!-- Scripts -->
     <script>
-        // Mobile Drawer Toggle
         function toggleMobileMenu() {
             const menu = document.getElementById('mobile-menu');
             menu.classList.toggle('hidden');
         }
 
-        // Email Handler
         function openEmailCompose(email, subject, body) {
             const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject || '')}&body=${encodeURIComponent(body || '')}`;
             window.location.href = mailtoLink;
@@ -892,7 +841,6 @@
             }, 300);
         }
 
-        // Software Selection Logic
         let selectedSoftware = [];
 
         function toggleSoftwareSelect(card, name) {
@@ -915,7 +863,6 @@
                 badge.classList.add('text-indigo-400', 'font-bold');
             }
 
-            // Update floating bar
             document.getElementById('selected-count').textContent = `${selectedSoftware.length} Selected`;
             if (selectedSoftware.length > 0) {
                 document.getElementById('selected-list-text').textContent = "Selected: " + selectedSoftware.join(', ');
@@ -951,14 +898,12 @@
             window.open(url, '_blank');
         }
 
-        // Prepaid Corporate IT Quote Helper
         function requestPrepaidQuote(planType) {
             const message = `Hi YG INNOVE, my company is interested in your Prepaid IT Support Plan (${planType}). Please send us details and pricing.`;
             const url = `https://wa.me/+23058216065?text=${encodeURIComponent(message)}`;
             window.open(url, '_blank');
         }
 
-        // Checkout Modal Logic
         function openCheckoutModal() {
             document.getElementById('checkout-modal').classList.remove('hidden');
         }
@@ -999,7 +944,6 @@
             window.open(url, '_blank');
         }
     </script>
-
 </body>
 
 </html>
