@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <title>iPhone & Samsung Repair Booking | YG INNOVE Mauritius</title>
     <meta name="description" content="Book professional iPhone and Samsung repairs in Mauritius with YG INNOVE. Battery replacement, display repair, back glass, and camera repairs.">
 
@@ -12,7 +13,7 @@
     <meta property="og:description" content="Fast turnaround repairs for Apple and Samsung devices in Mauritius.">
     <meta property="og:type" content="website">
 
-    <!-- External Assets -->
+    <!-- External Assets via HTTPS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -45,7 +46,7 @@
         </div>
     </nav>
 
-    <!-- Page Title & Header -->
+    <!-- Header Section -->
     <section class="bg-gradient-to-b from-indigo-950/40 to-gray-950 py-12 border-b border-gray-800/80">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <span class="bg-indigo-950 text-indigo-400 border border-indigo-800 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">Fast Turnaround Service</span>
@@ -54,7 +55,7 @@
         </div>
     </section>
 
-    <!-- SECTION: APPLE iPHONE REPAIRS -->
+    <!-- iPhone Repairs -->
     <section id="iphone" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center space-x-3 mb-8 border-b border-gray-800 pb-4">
             <div class="p-3 bg-gray-800 rounded-xl text-white text-2xl">
@@ -67,8 +68,6 @@
         </div>
 
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-            <!-- iPhone 15 Series -->
             <div class="service-card apple-card bg-gray-900 border border-gray-800 rounded-2xl p-6 relative flex flex-col justify-between transition hover:border-indigo-500/50">
                 <div>
                     <div class="flex justify-between items-start mb-4">
@@ -92,7 +91,6 @@
                 </button>
             </div>
 
-            <!-- iPhone 14 Series -->
             <div class="service-card apple-card bg-gray-900 border border-gray-800 rounded-2xl p-6 relative flex flex-col justify-between transition hover:border-indigo-500/50">
                 <div>
                     <div class="flex justify-between items-start mb-4">
@@ -116,7 +114,6 @@
                 </button>
             </div>
 
-            <!-- iPhone 13 & 12 Series -->
             <div class="service-card apple-card bg-gray-900 border border-gray-800 rounded-2xl p-6 relative flex flex-col justify-between transition hover:border-indigo-500/50">
                 <div>
                     <div class="flex justify-between items-start mb-4">
@@ -140,7 +137,6 @@
                 </button>
             </div>
 
-            <!-- Older iPhones (11, X, SE, 8) -->
             <div class="service-card apple-card bg-gray-900 border border-gray-800 rounded-2xl p-6 relative flex flex-col justify-between transition hover:border-indigo-500/50">
                 <div>
                     <div class="flex justify-between items-start mb-4">
@@ -162,11 +158,10 @@
                     <span>Book Repair</span>
                 </button>
             </div>
-
         </div>
     </section>
 
-    <!-- SECTION: SAMSUNG GALAXY REPAIRS -->
+    <!-- Samsung Repairs -->
     <section id="samsung" class="py-16 bg-gray-900/40 border-t border-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center space-x-3 mb-8 border-b border-gray-800 pb-4">
@@ -180,8 +175,6 @@
             </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-                <!-- Galaxy S Series -->
                 <div class="service-card bg-gray-900 border border-gray-800 rounded-2xl p-6 relative flex flex-col justify-between transition hover:border-blue-500/50">
                     <div>
                         <div class="flex justify-between items-start mb-4">
@@ -205,7 +198,6 @@
                     </button>
                 </div>
 
-                <!-- Galaxy Z Fold & Flip -->
                 <div class="service-card bg-gray-900 border border-gray-800 rounded-2xl p-6 relative flex flex-col justify-between transition hover:border-blue-500/50">
                     <div>
                         <div class="flex justify-between items-start mb-4">
@@ -228,7 +220,6 @@
                     </button>
                 </div>
 
-                <!-- Galaxy A Series -->
                 <div class="service-card bg-gray-900 border border-gray-800 rounded-2xl p-6 relative flex flex-col justify-between transition hover:border-blue-500/50">
                     <div>
                         <div class="flex justify-between items-start mb-4">
@@ -250,12 +241,11 @@
                         <span>Book Galaxy A Repair</span>
                     </button>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <!-- BOOKING MODAL -->
+    <!-- Booking Modal -->
     <div id="booking-modal" role="dialog" aria-labelledby="modal-title" aria-modal="true" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
         <div id="modal-content" class="bg-gray-900 border border-gray-800 rounded-2xl max-w-md w-full p-6 relative shadow-2xl">
             <button onclick="closeBookingModal()" aria-label="Close modal" class="absolute top-4 right-4 text-gray-400 hover:text-white text-lg">
@@ -318,7 +308,7 @@
         </div>
     </footer>
 
-    <!-- Interactive Script for Booking Modal -->
+    <!-- Scripts -->
     <script>
         let currentBrand = '';
         let currentDevice = '';
