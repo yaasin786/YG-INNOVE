@@ -753,6 +753,61 @@
         </div>
     </footer>
 
+    <!-- Floating Mini-Game Launcher Button -->
+    <div class="fixed bottom-6 left-6 z-40">
+        <button onclick="playClickSound(); openGameModal();" class="shimmer-btn bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold p-3.5 rounded-full shadow-2xl border border-purple-400/40 flex items-center space-x-2 group transition hover:scale-110">
+            <i class="fas fa-gamepad text-xl text-yellow-300 animate-bounce"></i>
+            <span class="hidden group-hover:inline text-xs font-extrabold pr-2 tracking-wide">Play Mini-Game</span>
+        </button>
+    </div>
+
+    <!-- Mini-Game Modal -->
+    <div id="game-modal" class="fixed inset-0 bg-gray-950/90 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-gray-900 border border-gray-800 rounded-3xl max-w-lg w-full p-6 shadow-2xl relative">
+            <button onclick="playClickSound(); closeGameModal();" class="absolute top-4 right-4 text-gray-400 hover:text-white bg-gray-800 p-2 rounded-full w-8 h-8 flex items-center justify-center transition z-10">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <div class="text-center mb-4">
+                <div class="inline-flex items-center space-x-2 bg-indigo-950/80 border border-indigo-800 px-3 py-1 rounded-full text-indigo-400 text-xs font-semibold mb-1">
+                    <i class="fas fa-shield-halved"></i>
+                    <span>YG INNOVE Mini-Game</span>
+                </div>
+                <h3 class="text-xl font-black text-white">Cyber Security Defender</h3>
+                <p class="text-xs text-gray-400">Destroy the incoming viruses before they breach the firewall!</p>
+            </div>
+
+            <!-- Game Canvas Container -->
+            <div class="relative bg-gray-950 border border-indigo-900/50 rounded-2xl overflow-hidden flex justify-center items-center">
+                <canvas id="cyberGameCanvas" width="400" height="300" class="w-full h-auto cursor-crosshair"></canvas>
+                
+                <!-- Game Over Overlay -->
+                <div id="game-over-screen" class="absolute inset-0 bg-gray-950/90 flex flex-col items-center justify-center hidden text-center p-4">
+                    <h4 class="text-2xl font-black text-red-500 mb-1">SYSTEM BREACHED!</h4>
+                    <p class="text-xs text-gray-400 mb-3">Final Score: <span id="final-score" class="text-indigo-400 font-bold">0</span></p>
+                    <button onclick="playClickSound(); restartCyberGame();" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs px-5 py-2.5 rounded-xl transition shadow-lg">
+                        <i class="fas fa-rotate-right mr-1.5"></i> Play Again
+                    </button>
+                </div>
+            </div>
+
+            <!-- Controls & Scoreboard -->
+            <div class="mt-4 flex items-center justify-between text-xs">
+                <div class="text-gray-400">
+                    <span>Score: </span><span id="game-score" class="font-bold text-indigo-400 text-sm">0</span>
+                </div>
+                <div class="text-gray-400 flex items-center gap-2">
+                    <span><i class="fas fa-keyboard text-indigo-400"></i> Arrow Keys / A & D to Move</span>
+                    <span>•</span>
+                    <span><i class="fas fa-mouse text-indigo-400"></i> Click / Space to Shoot</span>
+                </div>
+                <div id="reward-badge" class="hidden text-xs bg-yellow-500/20 text-yellow-400 border border-yellow-500/40 px-2.5 py-1 rounded-full font-bold animate-pulse">
+                    🎉 5% Off unlocked!
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Checkout Modal -->
     <div id="checkout-modal" class="fixed inset-0 bg-gray-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
         <div class="bg-gray-900 border border-gray-800 rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto">
@@ -1018,6 +1073,222 @@
             const message = `Hi YG INNOVE,\n\nI have completed a payment via MCB Juice / Bank Transfer.\n\n- Service/Item: ${item}\n- Amount Paid: Rs ${amount}\n- Paid to MCB Account: 000445566914\n\nAttached is my payment transfer receipt:`;
             const url = `https://wa.me/+23058216065?text=${encodeURIComponent(message)}`;
             window.open(url, '_blank');
+        }
+
+        // --- CYBER SECURITY DEFENDER MINI-GAME ---
+        const canvas = document.getElementById('cyberGameCanvas');
+        const ctx = canvas.getContext('2d');
+        let gameAnimationId;
+        let isGameRunning = false;
+        let score = 0;
+
+        let cannon = { 
+            x: canvas.width / 2, 
+            y: canvas.height - 20, 
+            radius: 15, 
+            speed: 5, 
+            dx: 0 
+        };
+
+        let projectiles = [];
+        let viruses = [];
+        let spawnRate = 90;
+        let frameCount = 0;
+
+        // Key state listener tracking
+        const keys = {
+            left: false,
+            right: false
+        };
+
+        function openGameModal() {
+            document.getElementById('game-modal').classList.remove('hidden');
+            restartCyberGame();
+        }
+
+        function closeGameModal() {
+            document.getElementById('game-modal').classList.add('hidden');
+            isGameRunning = false;
+            cancelAnimationFrame(gameAnimationId);
+        }
+
+        function restartCyberGame() {
+            document.getElementById('game-over-screen').classList.add('hidden');
+            document.getElementById('reward-badge').classList.add('hidden');
+            score = 0;
+            document.getElementById('game-score').textContent = score;
+            cannon.x = canvas.width / 2;
+            cannon.dx = 0;
+            projectiles = [];
+            viruses = [];
+            spawnRate = 90;
+            frameCount = 0;
+            isGameRunning = true;
+            gameLoop();
+        }
+
+        // 1. Keyboard Controls (Arrow Keys or A/D)
+        window.addEventListener('keydown', (e) => {
+            if (!isGameRunning) return;
+            if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') {
+                keys.left = true;
+            } else if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') {
+                keys.right = true;
+            } else if (e.key === ' ' || e.key === 'Spacebar') {
+                // Spacebar to shoot
+                e.preventDefault();
+                shootLaser();
+            }
+        });
+
+        window.addEventListener('keyup', (e) => {
+            if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') {
+                keys.left = false;
+            } else if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') {
+                keys.right = false;
+            }
+        });
+
+        // 2. Mouse/Touch Drag Control (Moves cannon with pointer)
+        function moveCannonWithPointer(clientX) {
+            if (!isGameRunning) return;
+            const rect = canvas.getBoundingClientRect();
+            const canvasX = (clientX - rect.left) * (canvas.width / rect.width);
+            cannon.x = Math.max(cannon.radius, Math.min(canvas.width - cannon.radius, canvasX));
+        }
+
+        canvas.addEventListener('mousemove', (e) => {
+            moveCannonWithPointer(e.clientX);
+        });
+
+        canvas.addEventListener('touchmove', (e) => {
+            if (e.touches.length > 0) {
+                moveCannonWithPointer(e.touches[0].clientX);
+            }
+        });
+
+        // Fire Action
+        function shootLaser() {
+            projectiles.push({ x: cannon.x, y: cannon.y, speed: 7 });
+            playClickSound();
+        }
+
+        canvas.addEventListener('click', () => {
+            if (isGameRunning) shootLaser();
+        });
+
+        function spawnVirus() {
+            const x = Math.random() * (canvas.width - 30) + 15;
+            const speed = 0.8 + Math.random() * 1.2;
+            viruses.push({ x: x, y: 0, radius: 12, speed: speed });
+        }
+
+        function updateGame() {
+            frameCount++;
+            if (frameCount % spawnRate === 0) {
+                spawnVirus();
+                if (spawnRate > 30) spawnRate--;
+            }
+
+            // Handle Keyboard Movement
+            if (keys.left) {
+                cannon.x -= cannon.speed;
+            }
+            if (keys.right) {
+                cannon.x += cannon.speed;
+            }
+
+            // Keep Cannon within boundaries
+            if (cannon.x - cannon.radius < 0) cannon.x = cannon.radius;
+            if (cannon.x + cannon.radius > canvas.width) cannon.x = canvas.width - cannon.radius;
+
+            // Move Projectiles
+            projectiles.forEach((p, index) => {
+                p.y -= p.speed;
+                if (p.y < 0) projectiles.splice(index, 1);
+            });
+
+            // Move Viruses & Collisions
+            viruses.forEach((v, vIdx) => {
+                v.y += v.speed;
+
+                if (v.y + v.radius >= canvas.height - 10) {
+                    endGame();
+                }
+
+                projectiles.forEach((p, pIdx) => {
+                    const dist = Math.hypot(p.x - v.x, p.y - v.y);
+                    if (dist < v.radius + 4) {
+                        viruses.splice(vIdx, 1);
+                        projectiles.splice(pIdx, 1);
+                        score += 10;
+                        document.getElementById('game-score').textContent = score;
+
+                        if (score >= 100) {
+                            document.getElementById('reward-badge').classList.remove('hidden');
+                        }
+                    }
+                });
+            });
+        }
+
+        function drawGame() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Firewall line
+            ctx.strokeStyle = '#6366f1';
+            ctx.lineWidth = 2;
+            ctx.setLineDash([5, 5]);
+            ctx.beginPath();
+            ctx.moveTo(0, canvas.height - 10);
+            ctx.lineTo(canvas.width, canvas.height - 10);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // Defender Cannon
+            ctx.fillStyle = '#818cf8';
+            ctx.beginPath();
+            ctx.arc(cannon.x, cannon.y + 10, cannon.radius, Math.PI, 0);
+            ctx.fill();
+
+            // Lasers
+            ctx.fillStyle = '#38bdf8';
+            projectiles.forEach(p => {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, 3, 0, Math.PI * 2);
+                ctx.fill();
+            });
+
+            // Viruses
+            viruses.forEach(v => {
+                ctx.fillStyle = '#ef4444';
+                ctx.beginPath();
+                ctx.arc(v.x, v.y, v.radius, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.strokeStyle = '#f87171';
+                ctx.lineWidth = 2;
+                for (let i = 0; i < 8; i++) {
+                    const angle = (Math.PI / 4) * i;
+                    ctx.beginPath();
+                    ctx.moveTo(v.x, v.y);
+                    ctx.lineTo(v.x + Math.cos(angle) * (v.radius + 4), v.y + Math.sin(angle) * (v.radius + 4));
+                    ctx.stroke();
+                }
+            });
+        }
+
+        function gameLoop() {
+            if (!isGameRunning) return;
+            updateGame();
+            drawGame();
+            gameAnimationId = requestAnimationFrame(gameLoop);
+        }
+
+        function endGame() {
+            isGameRunning = false;
+            document.getElementById('final-score').textContent = score;
+            document.getElementById('game-over-screen').classList.remove('hidden');
         }
     </script>
 </body>
