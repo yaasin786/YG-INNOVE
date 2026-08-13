@@ -813,10 +813,10 @@
                 <div>
                     <h3 class="font-black text-sm text-white flex items-center gap-1.5">
                         YG Tech Assist
-                        <span class="text-[9px] bg-indigo-900/80 text-indigo-300 border border-indigo-500/30 px-1.5 py-0.2 rounded uppercase font-mono">v2.4</span>
+                        <span class="text-[9px] bg-indigo-900/80 text-indigo-300 border border-indigo-500/30 px-1.5 py-0.2 rounded uppercase font-mono">v3.0</span>
                     </h3>
                     <p class="text-[11px] text-gray-400 flex items-center gap-1">
-                        <i class="fas fa-circle text-[6px] text-green-400 animate-pulse"></i> Online • Instant Diagnostic
+                        <i class="fas fa-circle text-[6px] text-green-400 animate-pulse"></i> Online • Smart Diagnostic
                     </p>
                 </div>
             </div>
@@ -854,9 +854,12 @@
             </button>
         </div>
 
-        <!-- Chat Input Form -->
+        <!-- Chat Input Form with Voice Speech Recog -->
         <form id="chatbot-form" onsubmit="event.preventDefault(); sendChatMessage();" class="p-3 bg-gray-950 border-t border-gray-800 flex items-center gap-2">
-            <input id="chatbot-input" type="text" placeholder="Describe your issue (e.g. slow laptop, AutoCAD setup)..." class="flex-1 bg-gray-900 border border-gray-700/80 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500 transition">
+            <input id="chatbot-input" type="text" placeholder="Describe your issue or speak into mic..." class="flex-1 bg-gray-900 border border-gray-700/80 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500 transition">
+            <button type="button" onclick="toggleVoiceInput()" id="mic-btn" title="Speak issue" class="bg-gray-800 hover:bg-gray-700 text-indigo-300 p-2.5 rounded-xl border border-gray-700 transition flex items-center justify-center">
+                <i class="fas fa-microphone text-xs"></i>
+            </button>
             <button type="submit" class="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2.5 rounded-xl font-bold transition flex items-center justify-center shadow-lg shadow-indigo-950/50">
                 <i class="fas fa-paper-plane text-xs"></i>
             </button>
@@ -1611,7 +1614,7 @@
             openCheckoutModal();
         }
 
-        // --- DYNAMIC AI TECH CHATBOT ENGINE ---
+        // --- UPGRADED DYNAMIC AI TECH CHATBOT ENGINE (v3.0) ---
         let chatHistory = [];
         let isChatOpen = false;
 
@@ -1636,7 +1639,7 @@
         }
 
         function appendBotWelcomeMessage() {
-            const welcomeText = "Welcome to **YG INNOVE Tech Assist**! 🚀\n\nI can help you with:\n- **Laptop & Apple MacBook Repairs**\n- **Software Installation** (Adobe, AutoCAD, Windows, Office)\n- **Prepaid Corporate IT Support**\n- **Instant Payments via MCB Juice**\n\nHow can I assist your setup or repair today?";
+            const welcomeText = "Welcome to **YG INNOVE Tech Assist v3.0**! 🚀\n\nI can help you directly with:\n- **Laptop & Apple MacBook Repairs**\n- **Software Installation Bundles**\n- **Corporate IT Retainers**\n- **Instant MCB Juice QR Payments**\n\nHow can I help you today?";
             addChatMessage('bot', welcomeText);
         }
 
@@ -1648,7 +1651,7 @@
             return formatted;
         }
 
-        function addChatMessage(sender, text) {
+        function addChatMessage(sender, text, cta = null) {
             const container = document.getElementById('chat-messages-container');
             const msgDiv = document.createElement('div');
             
@@ -1661,12 +1664,25 @@
                 `;
             } else {
                 msgDiv.className = 'flex justify-start items-start gap-2.5';
+                
+                let ctaHtml = '';
+                if (cta) {
+                    ctaHtml = `
+                        <div class="mt-2.5 pt-2 border-t border-gray-800 flex gap-2">
+                            <button onclick="${cta.action}" class="bg-indigo-600 hover:bg-indigo-500 text-white text-[11px] font-bold px-3 py-1.5 rounded-lg transition flex items-center gap-1.5 shadow-md">
+                                <i class="${cta.icon || 'fas fa-arrow-right'} text-[10px]"></i> ${cta.label}
+                            </button>
+                        </div>
+                    `;
+                }
+
                 msgDiv.innerHTML = `
                     <div class="w-7 h-7 rounded-xl bg-indigo-900/60 border border-indigo-500/40 flex items-center justify-center text-indigo-400 text-xs shrink-0 mt-0.5">
                         <i class="fas fa-robot"></i>
                     </div>
                     <div class="bg-gray-900 border border-gray-800 text-gray-200 p-3 rounded-2xl rounded-tl-none max-w-[85%] shadow-md leading-relaxed">
                         <div>${formatMarkdownText(text)}</div>
+                        ${ctaHtml}
                     </div>
                 `;
             }
@@ -1706,24 +1722,41 @@
             sendChatMessage();
         }
 
-        function generateTechResponse(query) {
-            const lower = query.toLowerCase();
+        function toggleVoiceInput() {
+            const micBtn = document.getElementById('mic-btn');
+            const input = document.getElementById('chatbot-input');
 
-            if (lower.includes('macbook') || lower.includes('apple') || lower.includes('retina') || lower.includes('imac')) {
-                return "🍏 **Apple & MacBook Repair Specialist**\n\nWe provide specialized diagnostics & repairs for M1, M2, M3, and Intel Mac models:\n- Retina Display Replacements\n- Logic Board & Chip Repair\n- Battery & Trackpad Replacement\n- macOS Recovery\n\nWould you like to speak directly with an Apple technician on WhatsApp?";
-            } else if (lower.includes('laptop') || lower.includes('repair') || lower.includes('screen') || lower.includes('hinge') || lower.includes('battery') || lower.includes('slow')) {
-                return "💻 **Windows Laptop Repairs & Upgrades**\n\nWe service Dell, HP, Lenovo, ASUS, Acer, MSI, and Toshiba:\n- Screen & Charging Port Repair\n- High-speed SSD & RAM Upgrades\n- Overheating & Fan Cleanouts\n- Liquid Damage Recovery\n\nNeed an immediate quote for your model?";
-            } else if (lower.includes('software') || lower.includes('autocad') || lower.includes('adobe') || lower.includes('office') || lower.includes('windows') || lower.includes('antivirus')) {
-                return "⚡ **Professional Software Setup**\n\nWe handle complete installation, licensing & activation:\n- **Adobe Creative Cloud** (Photoshop, Premiere, Illustrator)\n- **AutoCAD & Revit** 2D/3D\n- **Microsoft Office 365**\n- **Windows 10/11 Pro** & Drivers\n- **Antivirus & Firewall**\n\nYou can select software bundles directly from our Software section on this page!";
-            } else if (lower.includes('corporate') || lower.includes('business') || lower.includes('prepaid') || lower.includes('remote') || lower.includes('network') || lower.includes('office')) {
-                return "🏢 **Prepaid Corporate IT Support & Maintenance**\n\nKeep your company running smooth with our prepaid hour blocks:\n- **Remote Helpdesk Support** (AnyDesk / TeamViewer)\n- **On-Site Field Technician Support** in Mauritius\n- **Network Cabling, Wi-Fi & Firewalls**\n- **VAT Invoices & Credit Accounts**\n\nContact us on WhatsApp to discuss custom retainers for your company.";
-            } else if (lower.includes('pay') || lower.includes('juice') || lower.includes('mcb') || lower.includes('checkout') || lower.includes('price') || lower.includes('cost')) {
-                return "💳 **Easy Online Checkout & MCB Juice Payment**\n\nYou can easily make payments using MCB Juice or Direct Bank Transfer:\n- **MCB Account Number:** `000445566914`\n- **Account Name:** YG INNOVE\n\nClick the **'Checkout / Pay'** button in the top menu to generate your Juice QR Code instantly!";
-            } else if (lower.includes('hello') || lower.includes('hi') || lower.includes('hey') || lower.includes('bonjour')) {
-                return "Hello! 👋 How can **YG INNOVE** assist you today with your hardware, software, or IT support needs in Mauritius?";
-            } else {
-                return "Thank you for reaching out! To get you the most accurate answer or custom repair estimate, would you like to connect directly with our active lead technician on WhatsApp?\n\n📲 **WhatsApp:** +230 58216065\n📧 **Email:** yginnove@gmail.com";
+            if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+                alert("Voice speech recognition is not supported on this browser.");
+                return;
             }
+
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            const recognition = new SpeechRecognition();
+            recognition.lang = 'en-US';
+
+            recognition.onstart = function() {
+                micBtn.classList.remove('bg-gray-800', 'text-indigo-300');
+                micBtn.classList.add('bg-red-600', 'text-white', 'animate-pulse');
+            };
+
+            recognition.onresult = function(event) {
+                const transcript = event.results[0][0].transcript;
+                input.value = transcript;
+                sendChatMessage();
+            };
+
+            recognition.onerror = function() {
+                micBtn.classList.remove('bg-red-600', 'text-white', 'animate-pulse');
+                micBtn.classList.add('bg-gray-800', 'text-indigo-300');
+            };
+
+            recognition.onend = function() {
+                micBtn.classList.remove('bg-red-600', 'text-white', 'animate-pulse');
+                micBtn.classList.add('bg-gray-800', 'text-indigo-300');
+            };
+
+            recognition.start();
         }
 
         function sendChatMessage() {
@@ -1737,8 +1770,33 @@
 
             setTimeout(() => {
                 removeTypingIndicator();
-                const response = generateTechResponse(text);
-                addChatMessage('bot', response);
+                const lower = text.toLowerCase();
+                let response = "";
+                let cta = null;
+
+                if (lower.includes('macbook') || lower.includes('apple') || lower.includes('retina') || lower.includes('imac')) {
+                    response = "🍏 **Apple & MacBook Repair Specialist**\n\nWe provide specialized chip-level diagnostics & repairs for M1, M2, M3, and Intel Macs (Retina Screens, Logic Boards, macOS Recovery).";
+                    cta = { label: "Book MacBook Repair", action: `window.open('https://wa.me/+23058216065?text=${encodeURIComponent("Hi YG INNOVE, I need a MacBook repair quote for: " + text)}', '_blank')`, icon: "fab fa-whatsapp" };
+                } else if (lower.includes('laptop') || lower.includes('repair') || lower.includes('screen') || lower.includes('hinge') || lower.includes('battery') || lower.includes('slow')) {
+                    response = "💻 **Windows Laptop Repairs & Upgrades**\n\nWe fix screens, hinges, batteries, liquid damage, and install high-speed SSDs for Dell, HP, Lenovo, ASUS, and Acer.";
+                    cta = { label: "Get Repair Quote on WhatsApp", action: `window.open('https://wa.me/+23058216065?text=${encodeURIComponent("Hi YG INNOVE, I need a repair quote for my laptop: " + text)}', '_blank')`, icon: "fab fa-whatsapp" };
+                } else if (lower.includes('software') || lower.includes('autocad') || lower.includes('adobe') || lower.includes('office') || lower.includes('windows') || lower.includes('antivirus')) {
+                    response = "⚡ **Professional Software Setup**\n\nWe handle complete activation & licensing for Adobe Creative Cloud, AutoCAD, Revit, Windows 10/11 Pro, and Office 365.";
+                    cta = { label: "View & Build Software Bundle", action: "playClickSound(); document.getElementById('software').scrollIntoView({behavior: 'smooth'});", icon: "fas fa-download" };
+                } else if (lower.includes('corporate') || lower.includes('business') || lower.includes('prepaid') || lower.includes('remote') || lower.includes('network') || lower.includes('office')) {
+                    response = "🏢 **Prepaid Corporate IT Support & Retainers**\n\nKeep your company running smooth with our prepaid remote desk support and dedicated field technicians across Mauritius.";
+                    cta = { label: "Request Corporate Retainer", action: `window.open('https://wa.me/+23058216065?text=${encodeURIComponent("Hi YG INNOVE, my company needs information on Prepaid Corporate IT Support.")}', '_blank')`, icon: "fab fa-whatsapp" };
+                } else if (lower.includes('pay') || lower.includes('juice') || lower.includes('mcb') || lower.includes('checkout') || lower.includes('price') || lower.includes('cost')) {
+                    response = "💳 **Easy Online Checkout & MCB Juice Payment**\n\nYou can pay directly using MCB Juice or Bank Transfer (`000445566914`).";
+                    cta = { label: "Open Juice QR Payment Modal", action: "playClickSound(); openCheckoutModal();", icon: "fas fa-qrcode" };
+                } else if (lower.includes('hello') || lower.includes('hi') || lower.includes('hey') || lower.includes('bonjour')) {
+                    response = "Hello! 👋 How can **YG INNOVE** assist you today with your hardware, software, or IT support needs in Mauritius?";
+                } else {
+                    response = "Thank you for reaching out! To get you an accurate answer or direct estimate, click below to connect with our lead technician on WhatsApp.";
+                    cta = { label: "Chat Direct on WhatsApp", action: `window.open('https://wa.me/+23058216065?text=${encodeURIComponent("Hi YG INNOVE, I have a query: " + text)}', '_blank')`, icon: "fab fa-whatsapp" };
+                }
+
+                addChatMessage('bot', response, cta);
                 playSelectSound(true);
             }, 600);
         }
