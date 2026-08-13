@@ -35,7 +35,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 
-    <!-- Custom Tech Animations CSS -->
+    <!-- Custom Tech Animations & Chat Widget CSS -->
     <style>
         .tech-bg {
             background-color: #030712;
@@ -132,6 +132,31 @@
             animation: scanLine 2.5s infinite ease-in-out;
             z-index: 10;
         }
+
+        /* --- TECH CHATBOT CUSTOM STYLES --- */
+        #tech-chatbot-window {
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .chat-scrollbar::-webkit-scrollbar {
+            width: 5px;
+        }
+        .chat-scrollbar::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.6);
+        }
+        .chat-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(99, 102, 241, 0.4);
+            border-radius: 4px;
+        }
+        .chat-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: rgba(99, 102, 241, 0.8);
+        }
+        @keyframes typingPulse {
+            0%, 100% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.1); }
+        }
+        .dot-pulse-1 { animation: typingPulse 1.2s infinite ease-in-out 0s; }
+        .dot-pulse-2 { animation: typingPulse 1.2s infinite ease-in-out 0.2s; }
+        .dot-pulse-3 { animation: typingPulse 1.2s infinite ease-in-out 0.4s; }
     </style>
 
     <!-- Local SEO Schema.org JSON-LD -->
@@ -320,7 +345,7 @@
 
                     <div class="bg-indigo-950/40 border border-indigo-900/60 p-4 rounded-2xl flex items-center justify-between">
                         <span class="text-xs text-indigo-300">Need emergency repairs or software installation?</span>
-                        <a href="https://wa.me/+23058216065" target="_blank" rel="noopener noreferrer" onclick="playClickSound()" class="text-xs font-bold text-indigo-400 hover:text-indigo-300 underline flex items-center gap-1">Contact Technician <i class="fas fa-arrow-right text-[10px]"></i></a>
+                        <button onclick="playClickSound(); toggleTechChatbot();" class="text-xs font-bold text-indigo-400 hover:text-indigo-300 underline flex items-center gap-1">Ask Tech Assistant <i class="fas fa-robot text-[10px]"></i></button>
                     </div>
                 </div>
             </div>
@@ -758,6 +783,84 @@
             <i class="fas fa-gamepad text-xl text-yellow-300 animate-bounce"></i>
             <span class="hidden group-hover:inline text-xs font-extrabold pr-2 tracking-wide">Play Mini-Game</span>
         </button>
+    </div>
+
+    <!-- Floating AI Tech Chatbot Trigger -->
+    <div class="fixed bottom-6 right-6 z-40">
+        <button onclick="playClickSound(); toggleTechChatbot();" class="shimmer-btn bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-600 hover:from-indigo-500 hover:to-purple-500 text-white p-3.5 md:p-4 rounded-full shadow-2xl border border-indigo-400/40 flex items-center space-x-2.5 transition hover:scale-110">
+            <div class="relative">
+                <i class="fas fa-robot text-xl md:text-2xl text-indigo-200"></i>
+                <span class="absolute -top-1 -right-1 flex h-3 w-3">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                </span>
+            </div>
+            <span class="hidden md:inline text-xs font-extrabold pr-1 tracking-wide">Tech Assist AI</span>
+        </button>
+    </div>
+
+    <!-- AI Tech Chatbot Widget Window -->
+    <div id="tech-chatbot-window" class="fixed bottom-24 right-4 sm:right-6 z-50 w-[92vw] sm:w-[400px] h-[550px] max-h-[80vh] bg-gray-950/95 border border-indigo-500/40 rounded-3xl shadow-2xl backdrop-blur-2xl flex flex-col overflow-hidden hidden">
+        <!-- Chatbot Header -->
+        <div class="bg-gradient-to-r from-indigo-950 via-gray-900 to-gray-950 p-4 border-b border-indigo-900/50 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="relative">
+                    <div class="w-10 h-10 rounded-2xl bg-indigo-600/30 border border-indigo-400/40 flex items-center justify-center text-indigo-400 text-lg shadow-inner">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 rounded-full border-2 border-gray-950"></span>
+                </div>
+                <div>
+                    <h3 class="font-black text-sm text-white flex items-center gap-1.5">
+                        YG Tech Assist
+                        <span class="text-[9px] bg-indigo-900/80 text-indigo-300 border border-indigo-500/30 px-1.5 py-0.2 rounded uppercase font-mono">v2.4</span>
+                    </h3>
+                    <p class="text-[11px] text-gray-400 flex items-center gap-1">
+                        <i class="fas fa-circle text-[6px] text-green-400 animate-pulse"></i> Online • Instant Diagnostic
+                    </p>
+                </div>
+            </div>
+            <div class="flex items-center space-x-2">
+                <button onclick="playClickSound(); clearChatHistory();" title="Clear Chat" class="text-gray-400 hover:text-white p-1.5 rounded-lg hover:bg-gray-800/80 transition text-xs">
+                    <i class="fas fa-trash-alt"></i>
+                </button>
+                <button onclick="playClickSound(); toggleTechChatbot();" class="text-gray-400 hover:text-white p-1.5 rounded-lg hover:bg-gray-800/80 transition text-sm">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Chat Output Messages Container -->
+        <div id="chat-messages-container" class="flex-1 p-4 overflow-y-auto space-y-3.5 chat-scrollbar text-xs">
+            <!-- Dynamic Messages Inject Here -->
+        </div>
+
+        <!-- Quick Action Suggestion Chips -->
+        <div class="px-3 py-2 bg-gray-900/80 border-t border-gray-800 flex gap-2 overflow-x-auto no-scrollbar whitespace-nowrap text-[11px]">
+            <button onclick="playClickSound(); handleChipClick('Laptop Diagnostic');" class="bg-indigo-950/80 border border-indigo-700/50 hover:border-indigo-400 text-indigo-300 px-2.5 py-1 rounded-full transition flex items-center gap-1">
+                <i class="fas fa-laptop text-[10px]"></i> Laptop Repair
+            </button>
+            <button onclick="playClickSound(); handleChipClick('MacBook Services');" class="bg-indigo-950/80 border border-indigo-700/50 hover:border-indigo-400 text-indigo-300 px-2.5 py-1 rounded-full transition flex items-center gap-1">
+                <i class="fab fa-apple text-[10px]"></i> Apple / MacBook
+            </button>
+            <button onclick="playClickSound(); handleChipClick('Software Setup');" class="bg-indigo-950/80 border border-indigo-700/50 hover:border-indigo-400 text-indigo-300 px-2.5 py-1 rounded-full transition flex items-center gap-1">
+                <i class="fas fa-download text-[10px]"></i> Software Install
+            </button>
+            <button onclick="playClickSound(); handleChipClick('Corporate IT Support');" class="bg-indigo-950/80 border border-indigo-700/50 hover:border-indigo-400 text-indigo-300 px-2.5 py-1 rounded-full transition flex items-center gap-1">
+                <i class="fas fa-building text-[10px]"></i> Corporate IT
+            </button>
+            <button onclick="playClickSound(); handleChipClick('Payment Assistance');" class="bg-indigo-950/80 border border-indigo-700/50 hover:border-indigo-400 text-indigo-300 px-2.5 py-1 rounded-full transition flex items-center gap-1">
+                <i class="fas fa-qrcode text-[10px]"></i> Pay / Juice
+            </button>
+        </div>
+
+        <!-- Chat Input Form -->
+        <form id="chatbot-form" onsubmit="event.preventDefault(); sendChatMessage();" class="p-3 bg-gray-950 border-t border-gray-800 flex items-center gap-2">
+            <input id="chatbot-input" type="text" placeholder="Describe your issue (e.g. slow laptop, AutoCAD setup)..." class="flex-1 bg-gray-900 border border-gray-700/80 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500 transition">
+            <button type="submit" class="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2.5 rounded-xl font-bold transition flex items-center justify-center shadow-lg shadow-indigo-950/50">
+                <i class="fas fa-paper-plane text-xs"></i>
+            </button>
+        </form>
     </div>
 
     <!-- Mini-Game Modal -->
@@ -1506,6 +1609,138 @@
             document.getElementById('checkout-discount-code').value = code;
             closeGameModal();
             openCheckoutModal();
+        }
+
+        // --- DYNAMIC AI TECH CHATBOT ENGINE ---
+        let chatHistory = [];
+        let isChatOpen = false;
+
+        function toggleTechChatbot() {
+            const chatWin = document.getElementById('tech-chatbot-window');
+            isChatOpen = !isChatOpen;
+            if (isChatOpen) {
+                chatWin.classList.remove('hidden');
+                if (chatHistory.length === 0) {
+                    appendBotWelcomeMessage();
+                }
+            } else {
+                chatWin.classList.add('hidden');
+            }
+        }
+
+        function clearChatHistory() {
+            chatHistory = [];
+            const container = document.getElementById('chat-messages-container');
+            container.innerHTML = '';
+            appendBotWelcomeMessage();
+        }
+
+        function appendBotWelcomeMessage() {
+            const welcomeText = "Welcome to **YG INNOVE Tech Assist**! 🚀\n\nI can help you with:\n- **Laptop & Apple MacBook Repairs**\n- **Software Installation** (Adobe, AutoCAD, Windows, Office)\n- **Prepaid Corporate IT Support**\n- **Instant Payments via MCB Juice**\n\nHow can I assist your setup or repair today?";
+            addChatMessage('bot', welcomeText);
+        }
+
+        function formatMarkdownText(text) {
+            let formatted = text
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                .replace(/\n/g, '<br>');
+            return formatted;
+        }
+
+        function addChatMessage(sender, text) {
+            const container = document.getElementById('chat-messages-container');
+            const msgDiv = document.createElement('div');
+            
+            if (sender === 'user') {
+                msgDiv.className = 'flex justify-end';
+                msgDiv.innerHTML = `
+                    <div class="bg-indigo-600 text-white p-3 rounded-2xl rounded-tr-none max-w-[85%] shadow-md border border-indigo-400/30">
+                        <p class="leading-relaxed">${formatMarkdownText(text)}</p>
+                    </div>
+                `;
+            } else {
+                msgDiv.className = 'flex justify-start items-start gap-2.5';
+                msgDiv.innerHTML = `
+                    <div class="w-7 h-7 rounded-xl bg-indigo-900/60 border border-indigo-500/40 flex items-center justify-center text-indigo-400 text-xs shrink-0 mt-0.5">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="bg-gray-900 border border-gray-800 text-gray-200 p-3 rounded-2xl rounded-tl-none max-w-[85%] shadow-md leading-relaxed">
+                        <div>${formatMarkdownText(text)}</div>
+                    </div>
+                `;
+            }
+
+            container.appendChild(msgDiv);
+            container.scrollTop = container.scrollHeight;
+            chatHistory.push({ sender, text });
+        }
+
+        function showTypingIndicator() {
+            const container = document.getElementById('chat-messages-container');
+            const indicatorDiv = document.createElement('div');
+            indicatorDiv.id = 'typing-indicator';
+            indicatorDiv.className = 'flex justify-start items-start gap-2.5';
+            indicatorDiv.innerHTML = `
+                <div class="w-7 h-7 rounded-xl bg-indigo-900/60 border border-indigo-500/40 flex items-center justify-center text-indigo-400 text-xs shrink-0">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="bg-gray-900 border border-gray-800 text-gray-400 px-4 py-2.5 rounded-2xl rounded-tl-none flex items-center space-x-1">
+                    <span class="w-1.5 h-1.5 bg-indigo-400 rounded-full dot-pulse-1"></span>
+                    <span class="w-1.5 h-1.5 bg-indigo-400 rounded-full dot-pulse-2"></span>
+                    <span class="w-1.5 h-1.5 bg-indigo-400 rounded-full dot-pulse-3"></span>
+                </div>
+            `;
+            container.appendChild(indicatorDiv);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function removeTypingIndicator() {
+            const indicator = document.getElementById('typing-indicator');
+            if (indicator) indicator.remove();
+        }
+
+        function handleChipClick(topic) {
+            const input = document.getElementById('chatbot-input');
+            input.value = `I need info regarding ${topic}`;
+            sendChatMessage();
+        }
+
+        function generateTechResponse(query) {
+            const lower = query.toLowerCase();
+
+            if (lower.includes('macbook') || lower.includes('apple') || lower.includes('retina') || lower.includes('imac')) {
+                return "🍏 **Apple & MacBook Repair Specialist**\n\nWe provide specialized diagnostics & repairs for M1, M2, M3, and Intel Mac models:\n- Retina Display Replacements\n- Logic Board & Chip Repair\n- Battery & Trackpad Replacement\n- macOS Recovery\n\nWould you like to speak directly with an Apple technician on WhatsApp?";
+            } else if (lower.includes('laptop') || lower.includes('repair') || lower.includes('screen') || lower.includes('hinge') || lower.includes('battery') || lower.includes('slow')) {
+                return "💻 **Windows Laptop Repairs & Upgrades**\n\nWe service Dell, HP, Lenovo, ASUS, Acer, MSI, and Toshiba:\n- Screen & Charging Port Repair\n- High-speed SSD & RAM Upgrades\n- Overheating & Fan Cleanouts\n- Liquid Damage Recovery\n\nNeed an immediate quote for your model?";
+            } else if (lower.includes('software') || lower.includes('autocad') || lower.includes('adobe') || lower.includes('office') || lower.includes('windows') || lower.includes('antivirus')) {
+                return "⚡ **Professional Software Setup**\n\nWe handle complete installation, licensing & activation:\n- **Adobe Creative Cloud** (Photoshop, Premiere, Illustrator)\n- **AutoCAD & Revit** 2D/3D\n- **Microsoft Office 365**\n- **Windows 10/11 Pro** & Drivers\n- **Antivirus & Firewall**\n\nYou can select software bundles directly from our Software section on this page!";
+            } else if (lower.includes('corporate') || lower.includes('business') || lower.includes('prepaid') || lower.includes('remote') || lower.includes('network') || lower.includes('office')) {
+                return "🏢 **Prepaid Corporate IT Support & Maintenance**\n\nKeep your company running smooth with our prepaid hour blocks:\n- **Remote Helpdesk Support** (AnyDesk / TeamViewer)\n- **On-Site Field Technician Support** in Mauritius\n- **Network Cabling, Wi-Fi & Firewalls**\n- **VAT Invoices & Credit Accounts**\n\nContact us on WhatsApp to discuss custom retainers for your company.";
+            } else if (lower.includes('pay') || lower.includes('juice') || lower.includes('mcb') || lower.includes('checkout') || lower.includes('price') || lower.includes('cost')) {
+                return "💳 **Easy Online Checkout & MCB Juice Payment**\n\nYou can easily make payments using MCB Juice or Direct Bank Transfer:\n- **MCB Account Number:** `000445566914`\n- **Account Name:** YG INNOVE\n\nClick the **'Checkout / Pay'** button in the top menu to generate your Juice QR Code instantly!";
+            } else if (lower.includes('hello') || lower.includes('hi') || lower.includes('hey') || lower.includes('bonjour')) {
+                return "Hello! 👋 How can **YG INNOVE** assist you today with your hardware, software, or IT support needs in Mauritius?";
+            } else {
+                return "Thank you for reaching out! To get you the most accurate answer or custom repair estimate, would you like to connect directly with our active lead technician on WhatsApp?\n\n📲 **WhatsApp:** +230 58216065\n📧 **Email:** yginnove@gmail.com";
+            }
+        }
+
+        function sendChatMessage() {
+            const input = document.getElementById('chatbot-input');
+            const text = input.value.trim();
+            if (!text) return;
+
+            addChatMessage('user', text);
+            input.value = '';
+            showTypingIndicator();
+
+            setTimeout(() => {
+                removeTypingIndicator();
+                const response = generateTechResponse(text);
+                addChatMessage('bot', response);
+                playSelectSound(true);
+            }, 600);
         }
     </script>
 </body>
